@@ -1,0 +1,16 @@
+{
+  "name": "week-2-bootstrap",
+  "version": "1.0.0",
+  "description": "A simple site using Bootstrap to refresh skills.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@popperjs/core": "^2.11.8",
+    "bootstrap": "^5.3.3"
+  }
+}
