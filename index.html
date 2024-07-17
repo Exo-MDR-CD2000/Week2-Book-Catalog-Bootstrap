@@ -39,9 +39,13 @@
         </nav>
     </header>
 
-    <h2 class="container">
-        Catalogue Your Books Below
-    </h2>
+    <div class="container mt-2">
+        <div class="row">
+            <div class="col text-center">
+                <h2> Your Personal Book Catalog </h2>
+            </div>
+        </div>
+    </div>
 
     <!-- Bottom container now follows the grid layout -->
     <div class="container mt-4">
@@ -127,6 +131,7 @@
                         <td>180</td>
                         <td>4.5</td>
                         <td><input type="checkbox" class="form-check-input" checked></td>
+                        <td><button type="button" class="btn btn-sm btn-info">Example</button></td>
                     </tr>
                     <!-- Add more book entries here -->
                 </tbody>
@@ -136,16 +141,16 @@
 
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             const bookForm = document.getElementById('bookForm');
             const bookTableBody = document.querySelector('#bookTable tbody');
-    
+
             // Load books from localStorage on page load
             loadBooks();
-    
-            bookForm.addEventListener('submit', function(event) {
+
+            bookForm.addEventListener('submit', function (event) {
                 event.preventDefault(); // Prevent form submission
-    
+
                 // Get form values
                 const title = document.getElementById('title').value;
                 const author = document.getElementById('author').value;
@@ -156,30 +161,30 @@
                 const pageCount = document.getElementById('pageCount').value;
                 const rating = document.getElementById('rating').value;
                 const read = document.getElementById('read').checked;
-    
+
                 // Create a new book object
                 const book = { title, author, genre, year, publisher, isbn, pageCount, rating, read };
-    
+
                 // Add book to the table and localStorage
                 addBookToTable(book);
                 saveBookToLocalStorage(book);
-    
+
                 // Reset the form
                 bookForm.reset();
                 document.getElementById('ratingValue').value = 0;
             });
-    
+
             function loadBooks() {
                 const books = JSON.parse(localStorage.getItem('books')) || [];
                 books.forEach(book => addBookToTable(book));
             }
-    
+
             function saveBookToLocalStorage(book) {
                 const books = JSON.parse(localStorage.getItem('books')) || [];
                 books.push(book);
                 localStorage.setItem('books', JSON.stringify(books));
             }
-    
+
             function addBookToTable(book) {
                 const newRow = document.createElement('tr');
                 newRow.innerHTML = `
@@ -195,13 +200,13 @@
                     <td><button class="btn btn-danger btn-sm delete-btn">Delete</button></td>
                 `;
                 bookTableBody.appendChild(newRow);
-    
+
                 // Add event listener for delete button
-                newRow.querySelector('.delete-btn').addEventListener('click', function() {
+                newRow.querySelector('.delete-btn').addEventListener('click', function () {
                     deleteBook(newRow, book);
                 });
             }
-    
+
             function deleteBook(row, book) {
                 const books = JSON.parse(localStorage.getItem('books')) || [];
                 const index = books.findIndex(b => b.isbn === book.isbn);
