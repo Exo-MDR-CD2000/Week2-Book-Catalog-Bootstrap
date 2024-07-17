@@ -30,7 +30,7 @@ You can also clone the repository into your directory of choice and run:
 
 - [Github Repo](https://github.com/Exo-MDR-CD2000/Week-2-Bootstrap)
 
-- [Deployed Site](https://exo-mdr-cd2000.github.io/Week-2-Bootstrap/) 
+- [Deployed Site](https://exo-mdr-cd2000.github.io/Week2-Book-Catalog-Bootstrap/) 
 
 ## Credits
 
