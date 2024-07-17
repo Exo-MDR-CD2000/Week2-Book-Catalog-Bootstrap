@@ -100,7 +100,7 @@
     <div class="container mt-4">
         <h2>Book Catalog</h2>
         <div class="table-responsive">
-            <table class="table table-striped">
+            <table class="table table-striped" id="bookTable">
                 <thead>
                     <tr>
                         <th>Title</th>
@@ -112,6 +112,7 @@
                         <th>Page Count</th>
                         <th>Rating</th>
                         <th>Read?</th>
+                        <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -134,130 +135,84 @@
     </div>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-    <script>
-        document.getElementById('bookForm').addEventListener('submit', function (e) {
-            e.preventDefault(); // Prevent the default form submission
-
-            // Get form values
-            const book = {
-                title: document.getElementById('title').value,
-                author: document.getElementById('author').value,
-                genre: document.getElementById('genre').value,
-                year: document.getElementById('year').value,
-                publisher: document.getElementById('publisher').value,
-                isbn: document.getElementById('isbn').value,
-                pageCount: document.getElementById('pageCount').value,
-                rating: document.getElementById('rating').value,
-                read: document.getElementById('read').checked // get the checked status of the checkbox
-            };
-
-            // Find the table and create a new row at the end
-            const table = document.querySelector('.table tbody');
-            const newRow = table.insertRow();
-
-            // Insert cells (`<td>`) at the row
-            const cell1 = newRow.insertCell(0);
-            const cell2 = newRow.insertCell(1);
-            const cell3 = newRow.insertCell(2);
-            const cell4 = newRow.insertCell(3);
-            const cell5 = newRow.insertCell(4);
-            const cell6 = newRow.insertCell(5); // New cell for the read status checkbox
-            const cell7 = newRow.insertCell(6);
-            const cell8 = newRow.insertCell(7);
-            const cell9 = newRow.insertCell(8);
-
-            // Add the form data to the cells
-            cell1.textContent = title;
-            cell2.textContent = author;
-            cell3.textContent = genre;
-            cell4.textContent = year;
-            cell5.textContent = publisher;
-            cell6.textContent = isbn;
-            cell7.textContent = pageCount;
-            cell8.textContent = rating;
-
-
-            // Create a checkbox for the read status
-            const readCheckbox = document.createElement('input');
-            readCheckbox.type = 'checkbox';
-            readCheckbox.className = 'form-check-input';
-            readCheckbox.checked = read; // Set its checked status based on the form
-            cell9.appendChild(readCheckbox); // Add the checkbox to the cell
-
-            // Optionally, add an event listener to the checkbox for further actions
-            readCheckbox.addEventListener('change', function () {
-                // Handle checkbox change event, e.g., update a database or local storage
-                console.log('Read status changed:', this.checked);
-            });
-
-            // Clear the form fields
-            // document.getElementById('bookForm').reset();
-
-            // Save the book to local storage
-            saveBookToLocalStorage(book);
-        });
-
-        function saveBookToLocalStorage(book) {
-            // Get the existing books from local storage
-            const books = JSON.parse(localStorage.getItem('books')) || [];
-
-            // Add the new book to the array
-            books.push(book);
-
-            // Save the updated array back to local storage
-            localStorage.setItem('books', JSON.stringify(books));
-        }
-    </script>
-    
-    <!-- JS below defines an event listener to retrieve data from local storage -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            const books = JSON.parse(localStorage.getItem('books')) || [];
-            books.forEach(book => {
-                addToTable(book);
+            const bookForm = document.getElementById('bookForm');
+            const bookTableBody = document.querySelector('#bookTable tbody');
+    
+            // Load books from localStorage on page load
+            loadBooks();
+    
+            bookForm.addEventListener('submit', function(event) {
+                event.preventDefault(); // Prevent form submission
+    
+                // Get form values
+                const title = document.getElementById('title').value;
+                const author = document.getElementById('author').value;
+                const genre = document.getElementById('genre').value;
+                const year = document.getElementById('year').value;
+                const publisher = document.getElementById('publisher').value;
+                const isbn = document.getElementById('isbn').value;
+                const pageCount = document.getElementById('pageCount').value;
+                const rating = document.getElementById('rating').value;
+                const read = document.getElementById('read').checked;
+    
+                // Create a new book object
+                const book = { title, author, genre, year, publisher, isbn, pageCount, rating, read };
+    
+                // Add book to the table and localStorage
+                addBookToTable(book);
+                saveBookToLocalStorage(book);
+    
+                // Reset the form
+                bookForm.reset();
+                document.getElementById('ratingValue').value = 0;
             });
+    
+            function loadBooks() {
+                const books = JSON.parse(localStorage.getItem('books')) || [];
+                books.forEach(book => addBookToTable(book));
+            }
+    
+            function saveBookToLocalStorage(book) {
+                const books = JSON.parse(localStorage.getItem('books')) || [];
+                books.push(book);
+                localStorage.setItem('books', JSON.stringify(books));
+            }
+    
+            function addBookToTable(book) {
+                const newRow = document.createElement('tr');
+                newRow.innerHTML = `
+                    <td>${book.title}</td>
+                    <td>${book.author}</td>
+                    <td>${book.genre}</td>
+                    <td>${book.year}</td>
+                    <td>${book.publisher}</td>
+                    <td>${book.isbn}</td>
+                    <td>${book.pageCount}</td>
+                    <td>${book.rating}</td>
+                    <td><input type="checkbox" class="form-check-input" ${book.read ? 'checked' : ''} enabled></td>
+                    <td><button class="btn btn-danger btn-sm delete-btn">Delete</button></td>
+                `;
+                bookTableBody.appendChild(newRow);
+    
+                // Add event listener for delete button
+                newRow.querySelector('.delete-btn').addEventListener('click', function() {
+                    deleteBook(newRow, book);
+                });
+            }
+    
+            function deleteBook(row, book) {
+                const books = JSON.parse(localStorage.getItem('books')) || [];
+                const index = books.findIndex(b => b.isbn === book.isbn);
+                if (index !== -1) {
+                    books.splice(index, 1);
+                    localStorage.setItem('books', JSON.stringify(books));
+                    row.remove();
+                }
+            }
         });
-        
-        function addToTable(book) {
-            const table = document.querySelector('.table tbody');
-            const newRow = table.insertRow();
-        
-            // Create cells and set their content
-            newRow.insertCell(0).textContent = book.title;
-            newRow.insertCell(1).textContent = book.author;
-            newRow.insertCell(2).textContent = book.genre;
-            newRow.insertCell(3).textContent = book.year;
-            newRow.insertCell(4).textContent = book.publisher;
-            newRow.insertCell(5).textContent = book.isbn;
-            newRow.insertCell(6).textContent = book.pageCount;
-            newRow.insertCell(7).textContent = book.rating;
-        
-            // Add read status checkbox
-            const readCell = newRow.insertCell(8);
-            const readCheckbox = document.createElement('input');
-            readCheckbox.type = 'checkbox';
-            readCheckbox.checked = book.read;
-            readCell.appendChild(readCheckbox);
-        }
-        </script>
-
-
-
-
-
-
+    </script>
 
     <!-- Popper must be loaded in first before bootstrap JS -->
     <script src="node_modules/@popperjs/core/dist/umd/popper.min.js"></script>
