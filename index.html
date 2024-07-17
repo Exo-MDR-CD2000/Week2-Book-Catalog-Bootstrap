@@ -82,7 +82,8 @@
                 </div>
                 <div class="col-6 mb-3">
                     <label for="rating" class="form-label">Rating</label>
-                    <input type="range" class="form-range" id="rating" min="0" max="5" step="0.5" value="0" oninput="ratingValue.value = this.value" required>
+                    <input type="range" class="form-range" id="rating" min="0" max="5" step="0.5" value="0"
+                        oninput="ratingValue.value = this.value" required>
                     <output id="ratingValue">0</output>
                 </div>
             </div>
@@ -150,15 +151,17 @@
             e.preventDefault(); // Prevent the default form submission
 
             // Get form values
-            const title = document.getElementById('title').value;
-            const author = document.getElementById('author').value;
-            const genre = document.getElementById('genre').value;
-            const year = document.getElementById('year').value;
-            const publisher = document.getElementById('publisher').value;
-            const isbn = document.getElementById('isbn').value;
-            const pageCount = document.getElementById('pageCount').value;
-            const rating = document.getElementById('rating').value;
-            const read = document.getElementById('read').checked; // Get the checked status
+            const book = {
+                title: document.getElementById('title').value,
+                author: document.getElementById('author').value,
+                genre: document.getElementById('genre').value,
+                year: document.getElementById('year').value,
+                publisher: document.getElementById('publisher').value,
+                isbn: document.getElementById('isbn').value,
+                pageCount: document.getElementById('pageCount').value,
+                rating: document.getElementById('rating').value,
+                read: document.getElementById('read').checked // get the checked status of the checkbox
+            };
 
             // Find the table and create a new row at the end
             const table = document.querySelector('.table tbody');
@@ -200,9 +203,55 @@
             });
 
             // Clear the form fields
-            document.getElementById('bookForm').reset();
+            // document.getElementById('bookForm').reset();
+
+            // Save the book to local storage
+            saveBookToLocalStorage(book);
         });
+
+        function saveBookToLocalStorage(book) {
+            // Get the existing books from local storage
+            const books = JSON.parse(localStorage.getItem('books')) || [];
+
+            // Add the new book to the array
+            books.push(book);
+
+            // Save the updated array back to local storage
+            localStorage.setItem('books', JSON.stringify(books));
+        }
     </script>
+    
+    <!-- JS below defines an event listener to retrieve data from local storage -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const books = JSON.parse(localStorage.getItem('books')) || [];
+            books.forEach(book => {
+                addToTable(book);
+            });
+        });
+        
+        function addToTable(book) {
+            const table = document.querySelector('.table tbody');
+            const newRow = table.insertRow();
+        
+            // Create cells and set their content
+            newRow.insertCell(0).textContent = book.title;
+            newRow.insertCell(1).textContent = book.author;
+            newRow.insertCell(2).textContent = book.genre;
+            newRow.insertCell(3).textContent = book.year;
+            newRow.insertCell(4).textContent = book.publisher;
+            newRow.insertCell(5).textContent = book.isbn;
+            newRow.insertCell(6).textContent = book.pageCount;
+            newRow.insertCell(7).textContent = book.rating;
+        
+            // Add read status checkbox
+            const readCell = newRow.insertCell(8);
+            const readCheckbox = document.createElement('input');
+            readCheckbox.type = 'checkbox';
+            readCheckbox.checked = book.read;
+            readCell.appendChild(readCheckbox);
+        }
+        </script>
 
 
 
