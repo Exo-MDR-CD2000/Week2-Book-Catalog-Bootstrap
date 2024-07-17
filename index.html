@@ -58,21 +58,37 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-4 mb-3">
+                <div class="col-md-3 mb-3">
                     <label for="genre" class="form-label">Genre</label>
                     <input type="text" class="form-control" id="genre" required>
                 </div>
-                <div class="col-md-4 mb-3">
+                <div class="col-md-3 mb-3">
                     <label for="year" class="form-label">Year Published</label>
                     <input type="number" class="form-control" id="year" required>
                 </div>
-                <div class="col-md-4 mb-3">
+                <div class="col-md-3 mb-3">
+                    <label for="publishingCompany" class="form-label">Publishing Company</label>
+                    <input type="text" class="form-control" id="publishingCompany" required>
+                </div>
+                <div class="col-md-3 mb-3">
                     <label for="isbn" class="form-label">ISBN</label>
                     <input type="text" class="form-control" id="isbn" required>
                 </div>
             </div>
             <div class="row">
-                <div class="col-12 mb-3">
+                <div class="col-4 mb-3">
+                    <label for="pageCount" class="form-label">Page Count</label>
+                    <input type="number" class="form-control" id="pageCount" required>
+                </div>
+                <!-- rating system goes here -->
+                <div class="col-4 mb-3">
+                    <label for="rating" class="form-label">Rating</label>
+                    <input type="range" class="form-range" id="rating" min="0" max="5" step="0.5" oninput="ratingValue.value = this.value" required>
+                    <output id="ratingValue">3</output>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-4 mb-3">
                     <label for="read" class="form-check-label">Read?</label>
                     <input type="checkbox" class="form-check-input" id="read">
                 </div>
@@ -91,9 +107,11 @@
                         <th>Author</th>
                         <th>Genre</th>
                         <th>Year Published</th>
+                        <th>Publishing Company</th>
                         <th>ISBN</th>
+                        <th>Page Count</th>
+                        <th>Rating</th>
                         <th>Read?</th>
-                        <!-- add checkmark for 'if read status' or 'currently reading status' -->
                     </tr>
                 </thead>
                 <tbody>
@@ -103,7 +121,10 @@
                         <td>F. Scott Fitzgerald</td>
                         <td>Classic</td>
                         <td>1925</td>
+                        <td>Charles Scribner's Sons</td>
                         <td>978-0743273565</td>
+                        <td>180</td>
+                        <td>4.5</td>
                         <td><input type="checkbox" class="form-check-input" checked></td>
                     </tr>
                     <!-- Add more book entries here -->
