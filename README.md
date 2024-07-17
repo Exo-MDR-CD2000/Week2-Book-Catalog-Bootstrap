@@ -1,4 +1,4 @@
-# Week-2-Bootstrap
+# Book-Catalog-Bootstrap
 A simple site using Bootstrap to refresh skills.
 
 ## Description
