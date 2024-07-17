@@ -18,17 +18,24 @@ Javascript was added to save user input into localstorage so that the data is pe
 
 ## Usage
 
-Click on the deployed site link on the bottom or towards the right hand side of the repository. 
+Click on the deployed site link on the bottom or towards the right hand side of the repository.
+
+You can also clone the repository into your directory of choice and run:
+
+- `npm install` via the command line
+- Use the Live Server extension in VS Code to host the site locally (or use your preferred method of choice).
+
 
 ## Deployment Link(s)
 
 - [Github Repo](https://github.com/Exo-MDR-CD2000/Week-2-Bootstrap)
 
-- [Deployed Site](WIP) 
+- [Deployed Site](https://exo-mdr-cd2000.github.io/Week-2-Bootstrap/) 
 
 ## Credits
 
 - Independent research and Promineo Bootstrap videos.
+- [Bootstrap 5 Crash Course](https://www.youtube.com/watch?v=Jyvffr3aCp0&t=3582s)
 
 
 ## License
