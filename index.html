@@ -43,6 +43,69 @@
     Catalogue Your Books Below
 </h2>
 
+<div class="container mt-4">
+    <h2>Add a New Book</h2>
+    <form id="bookForm">
+        <div class="mb-3">
+            <label for="title" class="form-label">Title</label>
+            <input type="text" class="form-control" id="title" required>
+        </div>
+        <div class="mb-3">
+            <label for="author" class="form-label">Author</label>
+            <input type="text" class="form-control" id="author" required>
+        </div>
+        <div class="mb-3">
+            <label for="genre" class="form-label">Genre</label>
+            <input type="text" class="form-control" id="genre" required>
+        </div>
+        <div class="mb-3">
+            <label for="year" class="form-label">Year Published</label>
+            <input type="number" class="form-control" id="year" required>
+        </div>
+        <div class="mb-3">
+            <label for="isbn" class="form-label">ISBN</label>
+            <input type="text" class="form-control" id="isbn" required>
+        </div>
+        <div class="mb-3">
+            <label for="read" class="form-check-label">Read?</label>
+            <input type="checkbox" class="form-check-input" id="read">
+        </div>
+        <button type="submit" class="btn btn-primary">Add Book</button>
+    </form>
+</div>
+
+<div class="container mt-4">
+    <h2>Book Catalog</h2>
+    <div class="table-responsive">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Author</th>
+                <th>Genre</th>
+                <th>Year Published</th>
+                <th>ISBN</th>
+                <th>Read?</th>
+                <!-- add checkmark for 'if read status' or 'currently reading status' -->
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Sample Book Entry -->
+            <tr>
+                <td>The Great Gatsby</td>
+                <td>F. Scott Fitzgerald</td>
+                <td>Classic</td>
+                <td>1925</td>
+                <td>978-0743273565</td>
+                <td><input type="checkbox" class="form-check-input" checked></td>
+            </tr>
+            <!-- Add more book entries here -->
+        </tbody>
+    </table>
+</div>
+</div>
+
+<!-- add page count, rating system from 1-5 stars, publishing company -->
 
 
 
@@ -58,11 +121,54 @@
 
 
 
-
-
-
-
-
+<script>
+    document.getElementById('bookForm').addEventListener('submit', function(e) {
+        e.preventDefault(); // Prevent the default form submission
+    
+        // Get form values
+        const title = document.getElementById('title').value;
+        const author = document.getElementById('author').value;
+        const genre = document.getElementById('genre').value;
+        const year = document.getElementById('year').value;
+        const isbn = document.getElementById('isbn').value;
+        const read = document.getElementById('read').checked; // Get the checked status
+    
+        // Find the table and create a new row at the end
+        const table = document.querySelector('.table tbody');
+        const newRow = table.insertRow();
+    
+        // Insert cells (`<td>`) at the row
+        const cell1 = newRow.insertCell(0);
+        const cell2 = newRow.insertCell(1);
+        const cell3 = newRow.insertCell(2);
+        const cell4 = newRow.insertCell(3);
+        const cell5 = newRow.insertCell(4);
+        const cell6 = newRow.insertCell(5); // New cell for the read status checkbox
+    
+        // Add the form data to the cells
+        cell1.textContent = title;
+        cell2.textContent = author;
+        cell3.textContent = genre;
+        cell4.textContent = year;
+        cell5.textContent = isbn;
+    
+        // Create a checkbox for the read status
+        const readCheckbox = document.createElement('input');
+        readCheckbox.type = 'checkbox';
+        readCheckbox.className = 'form-check-input';
+        readCheckbox.checked = read; // Set its checked status based on the form
+        cell6.appendChild(readCheckbox); // Add the checkbox to the cell
+    
+        // Optionally, add an event listener to the checkbox for further actions
+        readCheckbox.addEventListener('change', function() {
+            // Handle checkbox change event, e.g., update a database or local storage
+            console.log('Read status changed:', this.checked);
+        });
+    
+        // Clear the form fields
+        document.getElementById('bookForm').reset();
+    });
+    </script>
 
 
 
