@@ -68,19 +68,28 @@
             </div>
         </div>
     </div>
-    <!-- contact form for book catalog here -->
 
-    <!-- belowis not proper grid layout -->
-    <!-- <div class="container">
-        <h1>Contact Us</h1>
-        <form action="contact.php" method="post">
-            <div class="mb-3">
-                <label for="name" class="form-label">Name</label>
-                <input type="text" name="name" id="name" class="form-control" required>
-            </div>
-            <div class="mb-3">
-                <label for="email" class="form-label">Email</label>
-                <input type="email" name="email" id="email" class="form-control" required>
+    <!-- contact form for book catalog here -->
+     <!-- follow the grid layout -->
+
+     <!-- The form is wrapped inside a div with the class 'container mt-3' -->
+      <!--  -->
+    <div class="container mt-4">
+        <h3 class="text-center">Contact Us</h3>
+        <form onsubmit="demoSubmit(event)" method="post">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Name</label>
+                        <input type="text" name="name" id="name" class="form-control" required>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email</label>
+                        <input type="email" name="email" id="email" class="form-control" required>
+                    </div>
+                </div>
             </div>
             <div class="mb-3">
                 <label for="message" class="form-label">Message</label>
@@ -88,7 +97,24 @@
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
-    </div> -->
+    </div>
+    
+<!-- Footer -->
+<!-- Needs some smaller adjustments but is responsive on most screen sizes -->
+<footer class="footer mt-3 py-3 bg-dark-subtle fixed-bottom text-center">
+    <div class="container">
+      <span class="text-muted fst-italic">J.A.G 2024</span>
+    </div>
+  </footer>
+
+
+<!-- JavaScript -->
+<script>
+    function demoSubmit(event) {
+        event.preventDefault(); // prevent form from submitting
+        alert("This form is for demonstration purposes only and will not submit any data.");
+    }
+</script>
 
 
 
