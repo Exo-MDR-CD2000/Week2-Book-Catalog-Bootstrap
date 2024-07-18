@@ -36,6 +36,8 @@ You can also clone the repository into your directory of choice and run:
 
 - Independent research and Promineo Bootstrap videos.
 - [Bootstrap 5 Crash Course](https://www.youtube.com/watch?v=Jyvffr3aCp0&t=3582s)
+- [Sticky Footer Example](https://getbootstrap.com/docs/5.2/examples/sticky-footer-navbar/)
+- [Official Bootstrap 5.3.x Docs](https://getbootstrap.com/docs/5.3/getting-started/introduction/)
 
 
 ## License
