@@ -12,7 +12,7 @@ The goal was to utilize the Bootstrap framework following a few guidelines:
     - Bootstrap grid used throughout to format elements
     - Elements should stack vertically when the window is small
 
-The focus this time was on developing a personal book catalog to demonstrate the felxibility of the Bootstrap framework. One can easily create Bootstrap containers that follow the grid layout of container, rows, and then columns to properly maintain structure and spacing of your site content. Bootstrap already has a mobile first approach which can be evident when viewing the site on mobile devices. The contact page displays a contact form which is only there for Bootstrap demonstration purposes and does not actually send out an email.
+The focus this time was on developing a personal book catalog to demonstrate the felxibility of the Bootstrap framework. One can easily create Bootstrap containers that follow the grid layout of container, rows, and then columns to properly maintain structure and spacing of your site content. Bootstrap already has a mobile first approach which can be evident when viewing the site on mobile devices. The contact page displays a contact form which is only there for Bootstrap demonstration purposes and does not actually send out information.
 
 Javascript was added to save user input into localstorage so that the data is persistent. Future updates to the site could include exporting the saved data into a spreadsheet file and adding a working contact form that sends an email out to the developer.
 
