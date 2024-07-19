@@ -25,15 +25,30 @@
 <body>
     <!-- Navbar -->
     <header>
+        <!-- navbar is responsive and changes based on screen size -->
         <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+            <!-- 
+        navbar: Bootstrap class for styling navigation bars.
+        navbar-expand-md: The navbar will be horizontal on medium (md) devices and larger, and collapsible on smaller screens.
+        navbar-dark: Indicates dark-colored text for the navigation bar links.
+        bg-dark: Sets the background color of the navbar to dark.
+        -->
             <div class="container-fluid">
                 <a class="navbar-brand" href="#">Bootstrap Books</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                     aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <!-- 
+                navbar-toggler: Styles the button that toggles the navbar on small screens.
+                data-bs-toggle="collapse": Bootstrap data attribute for collapsing and expanding content.
+                data-bs-target="#navbarNav": Targets the element with id="navbarNav" for the toggle action.
+                -->
                     <span class="navbar-toggler-icon"></span>
+                    <!-- navbar-toggler-icon: Adds an icon for the toggle button. -->
                 </button>
                 <!-- Navbar links -->
                 <div class="collapse navbar-collapse" id="navbarNav">
+                    <!-- collapse: Hides the content on small screens and shows it when toggled or on larger screens.
+                navbar-collapse: Styles the collapsible part of the navbar. -->
                     <ul class="navbar-nav ms-auto">
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="./index.html">Home</a>
@@ -73,10 +88,18 @@
 
     <!-- Bottom container now follows the grid layout -->
     <div class="container mt-4">
+        <!-- 
+        container: Bootstrap class that provides a responsive fixed width container.
+        mt-4: Adds a margin-top with a size of 4 (Bootstrap's spacing scale).
+        -->
         <h3>Add a New Book</h3>
         <form id="bookForm">
             <div class="row">
                 <div class="col-md-6 mb-3">
+                    <!-- 
+                    col-md-6: Creates a column that spans 6 out of 12 possible columns on medium devices and larger. 
+                    mb-3: Adds a margin-bottom with a size of 3.
+                    -->
                     <label for="title" class="form-label">Title</label>
                     <input type="text" class="form-control" id="title" required>
                 </div>
