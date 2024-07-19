@@ -18,9 +18,7 @@ Javascript was added to save user input into localstorage so that the data is pe
 
 ## Usage
 
-Click on the deployed site link on the bottom or towards the right hand side of the repository.
-
-You can also clone the repository into your directory of choice and run:
+Clone the repository into your directory of choice and open a new terminal window. NPM modules for Bootstrap must be installed by typing:
 
 - `npm install` via the command line
 - Use the Live Server extension in VS Code to host the site locally (or use your preferred method of choice).
