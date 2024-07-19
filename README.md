@@ -24,11 +24,9 @@ Clone the repository into your directory of choice and open a new terminal windo
 - Use the Live Server extension in VS Code to host the site locally (or use your preferred method of choice).
 
 
-## Deployment Link(s)
+## Link(s)
 
 - [Github Repo](https://github.com/Exo-MDR-CD2000/Week-2-Bootstrap)
-
-- [Deployed Site](https://exo-mdr-cd2000.github.io/Week2-Book-Catalog-Bootstrap/) 
 
 ## Credits
 
